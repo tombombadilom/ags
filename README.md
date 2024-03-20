@@ -1,4 +1,5 @@
 # ags config files
+![Screenshot](./screenshot.png)
 
 This are my own .config/ags files, with Local Ai , Ollama and maybe later LM-Studio addons 
 - Each of those projects allow LLM to be executed localy 
