@@ -4,7 +4,7 @@ This are my own .config/ags files, with Local Ai , Ollama and maybe later LM-Stu
 - Each of those projects allow LLM to be executed localy 
 - For some you need GPU ,
 - For others you just need CPU and an little RAM
-- Finally some otheres need a bit of GPU , RAM and GPU
+- Finally some others need a bit of GPU , RAM and GPU
 
 ## Ollama
 - [Project Web Site](https://ollama.com/)
