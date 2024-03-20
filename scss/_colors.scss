@@ -1,7 +1,7 @@
 ///////////// COLOR MODIFICATIONS /////////////
 // Material colors provide excellent readability, but can be uninteresting.
 // This is an attempt to improve that.
-$transparency_enabled: false;
+$transparency_enabled: true;
 
 @if $transparency_enabled ==false {
     @if $darkmode ==true {
