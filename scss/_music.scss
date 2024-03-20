@@ -7,7 +7,7 @@
 $music_gradient1: mix($color1, $background, 50%);
 
 // @if $darkmode ==true {
-//     $music_gradient1: mix($color1, $background, 30%);
+//     $music_gradient1: transparentize(mix(mix($background, $color1, 50%), $color6, 80%), 0.80);
 // }
 
 $music_gradient2: $color3;
@@ -16,10 +16,13 @@ $music_colorstart_transparentize: 0.3;
 $music_extra_transparentize: 0.15;
 
 $secondaryContainer: transparentize(mix(mix($background, $color2, 50%), $color6, 80%), 0.5);
-$onSecondaryContainer: mix($color7, $color2, 90%);
+$onSecondaryContainer: transparentize(mix(mix($background, $color7, 50%), $color2, 80%), 0.5);
+//$onSecondaryContainer: mix($color7, $color2, 90%);
 @if $darkmode ==false {
-    $onSecondaryContainer: mix($onSecondaryContainer, black, 50%);
+    $onSecondaryContainer: transparentize(mix(mix($onSecondaryContaine, black, 50%), $primary, 80%), 0.5);
+    //$onSecondaryContainer: mix($onSecondaryContainer, black, 50%);
 }
+$colorForeground: $primary;
 
 .osd-music {
     @include menu_decel;
@@ -47,7 +50,8 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     min-width: 7.5rem;
     min-height: 7.5rem;
     background-color: $t_surface;
-    color: $onSecondaryContainer;
+    color: $colorForeground;
+    //color: $onSecondaryContainer;
 }
 
 .osd-music-cover {
@@ -76,14 +80,16 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     @include element_decel;
     @include titlefont;
     font-size: 1.364rem;
-    color: $onSecondaryContainer;
+    color: $colorForeground;
+    //color: $onSecondaryContainer;
 }
 
 .osd-music-artists {
     @include element_decel;
     @include mainfont;
     font-size: 0.955rem;
-    color: mix($onSecondaryContainer, $secondaryContainer, 80%);
+    color: $colorForeground;
+    //color: mix($onSecondaryContainer, $secondaryContainer, 80%);
 }
 
 .osd-music-pill {
@@ -93,7 +99,8 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     min-width: 1.833rem;
     padding: 0.273rem 0.682rem;
     background-color: $secondaryContainer;
-    color: $onSecondaryContainer;
+    //color: $onSecondaryContainer;
+    color: $colorForeground;
 }
 
 .osd-music-controls {
@@ -103,7 +110,8 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     min-width: 1.833rem;
     padding: 0.205rem;
     background-color: $secondaryContainer;
-    color: $onSecondaryContainer;
+    //color: $onSecondaryContainer;
+    color: $colorForeground;
 }
 
 .osd-music-controlbtn {
@@ -135,7 +143,8 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     min-width: 0.409rem; // width of progress
     min-height: 3.068rem;
     padding: 0.273rem;
-    color: $onSecondaryContainer;
+    color: $colorForeground;
+    //color: $onSecondaryContainer;
 }
 
 .osd-music-playstate {
@@ -144,7 +153,8 @@ $onSecondaryContainer: mix($color7, $color2, 90%);
     min-width: 3.068rem;
     border-radius: 10rem;
     background-color: $secondaryContainer;
-    color: $onSecondaryContainer;
+    color: $colorForeground;
+    //color: $onSecondaryContainer;
 }
 
 .osd-music-playstate-btn>label {
