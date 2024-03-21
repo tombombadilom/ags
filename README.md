@@ -1,6 +1,8 @@
 # ags config files
 ![Screenshot](./screenshot.png)
 
+As always a Work in Progress... 
+
 This are my own .config/ags files, with Local Ai , Ollama and maybe later LM-Studio addons 
 - Each of those projects allow LLM to be executed localy 
 - For some you need GPU ,
@@ -12,6 +14,9 @@ This are my own .config/ags files, with Local Ai , Ollama and maybe later LM-Stu
 - [Models](https://ollama.com/library)
 - [Blog](https://ollama.com/blog)
 - [GithHub](https://github.com/ollama/ollama)
+### gguf-to-ollama
+Dagger functions to import Hugging Face GGUF models into a local ollama instance and optionally push them to ollama.com.
+- [GitHub](https://github.com/adrienbrault/hf-gguf-to-ollama)
 
 ## Local AI
 
@@ -23,6 +28,10 @@ This are my own .config/ags files, with Local Ai , Ollama and maybe later LM-Stu
 - [WebSite](https://lmstudio.ai/)
 - [GitHub](https://github.com/lmstudio-ai)
 
+## UseAnything
+- [WebSite](https://useanything.com/)
+- [Documentation](https://docs.useanything.com/)
+- [GitHub](https://github.com/Mintplex-Labs/anything-llm)
 
 ## AGS sources 
 - [Aylur](https://github.com/Aylur)
