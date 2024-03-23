@@ -33,6 +33,11 @@ Dagger functions to import Hugging Face GGUF models into a local ollama instance
 - [Documentation](https://docs.useanything.com/)
 - [GitHub](https://github.com/Mintplex-Labs/anything-llm)
 
+## Jan-ai
+- [WebSite](https://jan.ai/)
+- [Documentation](https://jan.ai/docs/)
+- GitHub](https://github.com/janhq/jan)
+
 ## AGS sources 
 - [Aylur](https://github.com/Aylur)
 - [Documentation](https://aylur.github.io/ags-docs/)
