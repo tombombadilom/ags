@@ -9,6 +9,11 @@ let configOptions = {
         'defaultTemperature': 0.9,
         'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
     },
+    'jan': {
+        'defaultJanProvider': "janai",
+        'defaultTemperature': 0.9,
+        'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
+    },
     'animations': {
         'durationSmall': 110,
         'durationLarge': 180,

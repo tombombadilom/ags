@@ -111,7 +111,7 @@ const JanInfo = () => {
     const openAiLogo = Icon({
         hpack: 'center',
         className: 'sidebar-chat-welcome-logo',
-        icon: `openai-symbolic`,
+        icon: `jan-symbolic`,
     });
     return Box({
         vertical: true,

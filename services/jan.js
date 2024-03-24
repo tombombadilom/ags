@@ -7,7 +7,15 @@ import Soup from 'gi://Soup?version=3.0';
 import { fileExists } from '../modules/.miscutils/files.js';
 
 const PROVIDERS = { // There's this list hmm https://github.com/zukixa/cool-ai-stuff/
-    'openai': {
+    'janai': {
+        'name': 'JanAI',
+        'logo_name': 'janai-symbolic',
+        'description': 'Official JANAI API.\nPricing: Free for the first $5 or 3 months, whichever is less.',
+        'base_url': 'https://api.openai.com/v1/chat/completions',
+        'key_get_url': 'https://platform.openai.com/api-keys',
+        'key_file': 'janai_key.txt',
+    },
+     'openai': {
         'name': 'OpenAI',
         'logo_name': 'openai-symbolic',
         'description': 'Official OpenAI API.\nPricing: Free for the first $5 or 3 months, whichever is less.',
@@ -58,11 +66,11 @@ const initMessages =
 
 // We're using many models to not be restricted to 3 messages per minute.
 // The whole chat will be sent every request anyway.
-Utils.exec(`mkdir -p ${GLib.get_user_cache_dir()}/ags/user/ai`);
+Utils.exec(`mkdir -p ${GLib.get_user_cache_dir()}/ags/user/jan`);
 const JAN_MODELS = ["gpt-3.5-turbo-1106", "gpt-3.5-turbo", "gpt-3.5-turbo-16k", "gpt-3.5-turbo-0613"]
 const ONE_CYCLE_COUNT = 3;
 
-class janMessage extends Service {
+class JanMessage extends Service {
     static {
         Service.register(this,
             {
@@ -122,7 +130,7 @@ class janMessage extends Service {
     }
 }
 
-class janService extends Service {
+class JanService extends Service {
     static {
         Service.register(this, {
             'initialized': [],
@@ -132,22 +140,22 @@ class janService extends Service {
             'providerChanged': [],
         });
     }
-
+    
     _assistantPrompt = true;
-    _currentProvider = userOptions.ai.defaultjanProvider;
+    _currentProvider = userOptions.jan.defaultJanProvider;
     _cycleModels = false;
     _requestCount = 0;
-    _temperature = userOptions.ai.defaultTemperature;
+    _temperature = userOptions.jan.defaultTemperature;
     _messages = [];
     _modelIndex = 0;
     _key = '';
-    _key_file_location = `${GLib.get_user_cache_dir()}/ags/user/ai/${PROVIDERS[this._currentProvider]['key_file']}`;
+    _key_file_location = `${GLib.get_user_cache_dir()}/ags/user/jan/${PROVIDERS[this._currentProvider]['key_file']}`;
     _url = GLib.Uri.parse(PROVIDERS[this._currentProvider]['base_url'], GLib.UriFlags.NONE);
     
     _decoder = new TextDecoder();
 
     _initChecks() {
-        this._key_file_location = `${GLib.get_user_cache_dir()}/ags/user/ai/${PROVIDERS[this._currentProvider]['key_file']}`;
+        this._key_file_location = `${GLib.get_user_cache_dir()}/ags/user/jan/${PROVIDERS[this._currentProvider]['key_file']}`;
         if (fileExists(this._key_file_location)) this._key = Utils.readFile(this._key_file_location).trim();
         else this.emit('hasKey', false);
         this._url = GLib.Uri.parse(PROVIDERS[this._currentProvider]['base_url'], GLib.UriFlags.NONE);
@@ -283,4 +291,4 @@ class janService extends Service {
     }
 }
 
-export default new janService();
+export default new JanService();
