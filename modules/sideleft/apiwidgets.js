@@ -9,10 +9,12 @@ import GPTService from '../../services/gpt.js';
 import Gemini from '../../services/gemini.js';
 import Ollama from '../../services/ollama.js';
 import Localai from '../../services/localai.js';
+import Jan from '../../services/jan.js'
 
 import {ollamaView, ollamaCommands, sendMessage as ollamaSendMessage, ollamaTabIcon } from './apis/ollama.js';
 import {localaiView, localaiCommands, sendMessage as localaiSendMessage, localaiTabIcon } from './apis/localai.js';
 import { geminiView, geminiCommands, sendMessage as geminiSendMessage, geminiTabIcon } from './apis/gemini.js';
+import { janView, janCommands, sendMessage as janSendMessage, janTabIcon } from './apis/jan.js';
 import { chatGPTView, chatGPTCommands, sendMessage as chatGPTSendMessage, chatGPTTabIcon } from './apis/chatgpt.js';
 import { waifuView, waifuCommands, sendMessage as waifuSendMessage, waifuTabIcon } from './apis/waifu.js';
 import { booruView, booruCommands, sendMessage as booruSendMessage, booruTabIcon } from './apis/booru.js';
@@ -24,6 +26,22 @@ import { widgetContent } from './sideleft.js';
 
 const EXPAND_INPUT_THRESHOLD = 30;
 const APIS = [
+    {
+        name: 'Assistant (Jan ui)',
+        sendCommand: janSendMessage,
+        contentWidget: janView,
+        commandBar: janCommands,
+        tabIcon: janTabIcon,
+        placeholderText: 'Message Jan ui llm...',
+    },
+    {
+        name: 'Assistant (Local AI)',
+        sendCommand: localaiSendMessage,
+        contentWidget: localaiView,
+        commandBar: localaiCommands,
+        tabIcon: localaiTabIcon,
+        placeholderText: 'Message Local AI LLM...',
+    },
     {
         name: 'Assistant (Ollama)',
         sendCommand: ollamaSendMessage,
@@ -107,6 +125,14 @@ export const chatEntry = TextView({
         .hook(Ollama, (self) => {
             if (APIS[currentApiId].name != 'Assistant (Ollama)') return;
             self.placeholderText = (Ollama.key.length > 0 ? 'Message Ollama...' : 'Enter Ollama AI API Key...');
+        }, 'hasKey')
+         .hook(Localai, (self) => {
+            if (APIS[currentApiId].name != 'Assistant (Local AI)') return;
+            self.placeholderText = (Localai.key.length > 0 ? 'Message Local AI...' : 'Enter Local AI AI API Key...');
+         }, 'hasKey')
+         .hook(JanService, (self) => {
+            if (APIS[currentApiId].name != 'Assistant (Jan AI)') return;
+            self.placeholderText = (JanService.key.length > 0 ? 'Message Jan AI...' : 'Enter Jan AI AI API Key...');
         }, 'hasKey')
         .on("key-press-event", (widget, event) => {
             // Don't send when Shift+Enter
