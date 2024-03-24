@@ -15,7 +15,7 @@ import { chatEntry } from '../apiwidgets.js';
 
 export const janTabIcon = Icon({
     hpack: 'center',
-    className: 'sidebar-jan-apiswitcher-icon',
+    className: 'sidebar-chat-apiswitcher-icon',
     icon: `jan-symbolic`,
 });
 
@@ -82,7 +82,7 @@ const ProviderSwitcher = () => {
         transition: 'slide_down',
         transitionDuration: userOptions.animations.durationLarge,
         child: Box({
-            vertical: true, className: 'spacing-v-5 sidebar-jan-providerswitcher-list',
+            vertical: true, className: 'spacing-v-5 sidebar-chat-providerswitcher-list',
             children: [
                 Box({ className: 'separator-line margin-top-5 margin-bottom-5' }),
                 Box({
@@ -99,7 +99,7 @@ const ProviderSwitcher = () => {
     return Box({
         hpack: 'center',
         vertical: true,
-        className: 'sidebar-jan-providerswitcher',
+        className: 'sidebar-chat-providerswitcher',
         children: [
             indicatorButton,
             providerList,
@@ -110,7 +110,7 @@ const ProviderSwitcher = () => {
 const JanInfo = () => {
     const openAiLogo = Icon({
         hpack: 'center',
-        className: 'sidebar-jan-welcome-logo',
+        className: 'sidebar-chat-welcome-logo',
         icon: `openai-symbolic`,
     });
     return Box({
@@ -119,7 +119,7 @@ const JanInfo = () => {
         children: [
             openAiLogo,
             Label({
-                className: 'txt txt-title-small sidebar-jan-welcome-txt',
+                className: 'txt txt-title-small sidebar-chat-welcome-txt',
                 wrap: true,
                 justify: Gtk.Justification.CENTER,
                 label: 'Assistant (Jans)',
@@ -159,7 +159,7 @@ const JanSettings = () => MarginRevealer({
     ,
     child: Box({
         vertical: true,
-        className: 'sidebar-jan-settings',
+        className: 'sidebar-chat-settings',
         children: [
             ConfigSegmentedSelection({
                 hpack: 'center',
@@ -180,7 +180,7 @@ const JanSettings = () => MarginRevealer({
             Box({
                 vertical: true,
                 hpack: 'fill',
-                className: 'sidebar-jan-settings-toggles',
+                className: 'sidebar-chat-settings-toggles',
                 children: [
                     ConfigToggle({
                         icon: 'cycle',
@@ -220,7 +220,7 @@ export const OpenaiApiKeyInstructions = () => Box({
             child: Label({
                 useMarkup: true,
                 wrap: true,
-                className: 'txt sidebar-jan-welcome-txt',
+                className: 'txt sidebar-chat-welcome-txt',
                 justify: Gtk.Justification.CENTER,
                 label: 'An API key is required\nYou can grab one <u>here</u>, then enter it below'
             }),
@@ -269,7 +269,7 @@ const clearjan = () => {
 }
 
 const CommandButton = (command) => Button({
-    className: 'sidebar-jan-chip sidebar-jan-chip-action txt txt-small',
+    className: 'sidebar-chat-chip sidebar-chat-chip-action txt txt-small',
     onClicked: () => sendMessage(command),
     setup: setupCursorHover,
     label: command,
@@ -334,7 +334,7 @@ export const janView = Box({
     children: [
         ProviderSwitcher(),
         Scrollable({
-            className: 'sidebar-jan-viewport',
+            className: 'sidebar-chat-viewport',
             vexpand: true,
             child: Box({
                 vertical: true,

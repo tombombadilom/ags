@@ -4,6 +4,11 @@ import userOverrides from '../../user_options.js';
 // Defaults
 let configOptions = {
     // General stuff
+    'jan': {
+        'defaultJanProvider': "janai",
+        'defaultTemperature': 0.9,
+        'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
+    },
     'ai': {
         'defaultGPTProvider': "openai",
         'defaultTemperature': 0.9,
