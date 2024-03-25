@@ -54,6 +54,9 @@ Dagger functions to import Hugging Face GGUF models into a local ollama instance
 - [GitHub](https://github.com/Aylur/ags)
 
 # DEBUG 
+This link can help
+- [ags-cli](https://aylur.github.io/ags-docs/config/cli/)
+
 In case you lose your menu bars and side panels, you obviously have a bug in your code:
 
 ### Debug procedure:
