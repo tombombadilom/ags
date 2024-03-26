@@ -10,7 +10,7 @@ let configOptions = {
         'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
     },
     'jan': {
-        'defaultJanProvider': "janai",
+        'defaultJanProvider': "gpt-4",
         'defaultTemperature': 0.9,
         'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
     },

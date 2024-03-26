@@ -114,6 +114,11 @@ export const chatEntry = TextView({
     acceptsTab: false,
     className: 'sidebar-chat-entry txt txt-smallie',
     setup: (self) => self
+         .hook(JanService, (self) => {
+            if (APIS[currentApiId].name != 'Assistant (Jan AI)') return;
+            self.placeholderText = (JanService.key.length > 0 ? 'Message Jan AI...' : 'Enter Jan AI AI API Key...');
+         }, 'hasKey')
+        
         .hook(GPTService, (self) => {
             if (APIS[currentApiId].name != 'Assistant (GPTs)') return;
             self.placeholderText = (GPTService.key.length > 0 ? 'Message the model...' : 'Enter API Key...');
@@ -122,18 +127,12 @@ export const chatEntry = TextView({
             if (APIS[currentApiId].name != 'Assistant (Gemini Pro)') return;
             self.placeholderText = (Gemini.key.length > 0 ? 'Message Gemini...' : 'Enter Google AI API Key...');
         }, 'hasKey')
-        .hook(Ollama, (self) => {
-            if (APIS[currentApiId].name != 'Assistant (Ollama)') return;
-            self.placeholderText = (Ollama.key.length > 0 ? 'Message Ollama...' : 'Enter Ollama AI API Key...');
-        }, 'hasKey')
+        
         //  .hook(Localai, (self) => {
         //     if (APIS[currentApiId].name != 'Assistant (Local AI)') return;
         //     self.placeholderText = (Localai.key.length > 0 ? 'Message Local AI...' : 'Enter Local AI AI API Key...');
         //  }, 'hasKey')
-         .hook(JanService, (self) => {
-            if (APIS[currentApiId].name != 'Assistant (Jan AI)') return;
-            self.placeholderText = (JanService.key.length > 0 ? 'Message Jan AI...' : 'Enter Jan AI AI API Key...');
-        }, 'hasKey')
+        
         .on("key-press-event", (widget, event) => {
             // Don't send when Shift+Enter
             if (event.get_keyval()[1] === Gdk.KEY_Return && event.get_state()[1] == Gdk.ModifierType.MOD2_MASK) {

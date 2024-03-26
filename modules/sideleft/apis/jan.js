@@ -276,11 +276,14 @@ const CommandButton = (command) => Button({
 });
 
 export const janCommands = Box({
-    className: 'spacing-h-5',
+    className: 'spacing-m-5',
     children: [
         Box({ hexpand: true }),
-        CommandButton('/key'),
-        CommandButton('/model'),
+        CommandButton('/chat'), // set iin chat mode
+        CommandButton('/threads'), // get threads
+        CommandButton('/model'), // switch model
+        CommandButton('/models/download'), // download model
+        CommandButton('/models'), //list models
         CommandButton('/clear'),
     ]
 });
@@ -298,7 +301,7 @@ export const sendMessage = (text) => {
     if (text.startsWith('/')) {
         if (text.startsWith('/clear')) clearjan();
         else if (text.startsWith('/model')) janContent.add(SystemMessage(`Currently using \`${JanService.modelName}\``, '/model', janView))
-        else if (text.startsWith('/prompt')) {
+        else if (text.startsWith('/prompt') ||text.startsWith('/chat') ) {
             const firstSpaceIndex = text.indexOf(' ');
             const prompt = text.slice(firstSpaceIndex + 1);
             if (firstSpaceIndex == -1 || prompt.length < 1) {
