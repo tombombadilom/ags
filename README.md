@@ -48,6 +48,11 @@ Dagger functions to import Hugging Face GGUF models into a local ollama instance
 - [Documentation](https://docs.useanything.com/)
 - [GitHub](https://github.com/Mintplex-Labs/anything-llm)
 
+## TabbyML
+- [WebSite](https://tabby.tabbyml.com/)
+- [Documentation](https://tabby.tabbyml.com/docs/getting-started)
+- [GitHub](https://github.com/TabbyML/tabby)
+
 ## AGS sources 
 - [Aylur](https://github.com/Aylur)
 - [Documentation](https://aylur.github.io/ags-docs/)
