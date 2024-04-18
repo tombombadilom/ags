@@ -59,8 +59,8 @@ const initMessages =
 // We're using many models to not be restricted to 3 messages per minute.
 // The whole chat will be sent every request anyway.
 Utils.exec(`mkdir -p ${GLib.get_user_cache_dir()}/ags/user/ai`);
-const CHAT_MODELS = ["gpt-3.5-turbo-1106", "gpt-3.5-turbo", "gpt-3.5-turbo-16k", "gpt-3.5-turbo-0613", "gpt-4", "gpt-4-turbo-1106", "gpt-4-turbo", "gpt-4-turbo-16k", "gpt-4-turbo-0613"]
-const ONE_CYCLE_COUNT = 3;
+const CHAT_MODELS = [ "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo-1106", "gpt-3.5-turbo", "gpt-3.5-turbo-16k", "gpt-3.5-turbo-0613"]
+const ONE_CYCLE_COUNT = 4
 
 class GPTMessage extends Service {
     static {
