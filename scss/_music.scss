@@ -4,10 +4,11 @@
 @import './musicwal';
 @import './colors';
 @import './lib_mixins';
+$music_transparentize_amount: 0.3;
 $music_gradient1: mix($color1, $background, 50%);
 
-// @if $darkmode ==true {
-//     $music_gradient1: transparentize(mix(mix($background, $color1, 50%), $color6, 80%), 0.80);
+// @if $darkmode == True {
+//     $music_gradient1: mix($color1, $background, 30%);
 // }
 
 $music_gradient2: $color3;
@@ -16,13 +17,10 @@ $music_colorstart_transparentize: 0.3;
 $music_extra_transparentize: 0.15;
 
 $secondaryContainer: transparentize(mix(mix($background, $color2, 50%), $color6, 80%), 0.5);
-$onSecondaryContainer: transparentize(mix(mix($background, $color7, 50%), $color2, 80%), 0.5);
-//$onSecondaryContainer: mix($color7, $color2, 90%);
-@if $darkmode ==false {
-    $onSecondaryContainer: transparentize(mix(mix($onSecondaryContaine, black, 50%), $primary, 80%), 0.5);
-    //$onSecondaryContainer: mix($onSecondaryContainer, black, 50%);
+$onSecondaryContainer: mix($color7, $color2, 90%);
+@if $darkmode == False {
+    $onSecondaryContainer: mix($onSecondaryContainer, black, 50%);
 }
-$colorForeground: $primary;
 
 .osd-music {
     @include menu_decel;
@@ -31,13 +29,13 @@ $colorForeground: $primary;
     @include normal-rounding;
     // min-height: 7.159rem;
     min-width: 29.659rem;
-    background-color: $t_background;
+    background-color: $layer0;
     padding: 0rem 1.023rem;
     background: // Inspired by Amberol
-        linear-gradient(127deg, transparentize($music_gradient1, $music_colorstart_transparentize), transparentize($music_gradient1, $music_colorstart_transparentize - $transparentize_amount + $music_extra_transparentize) 70.71%),
-        linear-gradient(217deg, transparentize($music_gradient2, $music_colorstart_transparentize), transparentize($music_gradient2, $music_colorstart_transparentize - $transparentize_amount + $music_extra_transparentize) 70.71%),
+        linear-gradient(127deg, transparentize($music_gradient1, $music_colorstart_transparentize), transparentize($music_gradient1, $music_colorstart_transparentize - $music_transparentize_amount + $music_extra_transparentize) 70.71%),
+        linear-gradient(217deg, transparentize($music_gradient2, $music_colorstart_transparentize), transparentize($music_gradient2, $music_colorstart_transparentize - $music_transparentize_amount + $music_extra_transparentize) 70.71%),
         radial-gradient(circle at 0% 100%, $color4 13%, rgba(0, 0, 0, 0) 100%),
-        linear-gradient(336deg, transparentize($music_gradient3, $music_colorstart_transparentize), transparentize($music_gradient3, $music_colorstart_transparentize - $transparentize_amount + $music_extra_transparentize) 70.71%),
+        linear-gradient(336deg, transparentize($music_gradient3, $music_colorstart_transparentize), transparentize($music_gradient3, $music_colorstart_transparentize - $music_transparentize_amount + $music_extra_transparentize) 70.71%),
         linear-gradient($background, $background), // We don't want wallpaper tint, so here's a fully opaque surface
     ;
 }
@@ -49,9 +47,8 @@ $colorForeground: $primary;
     // margin: 1.023rem;
     min-width: 7.5rem;
     min-height: 7.5rem;
-    background-color: $t_surface;
-    color: $colorForeground;
-    //color: $onSecondaryContainer;
+    background-color: $layer1;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-cover {
@@ -80,16 +77,14 @@ $colorForeground: $primary;
     @include element_decel;
     @include titlefont;
     font-size: 1.364rem;
-    color: $colorForeground;
-    //color: $onSecondaryContainer;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-artists {
     @include element_decel;
     @include mainfont;
     font-size: 0.955rem;
-    color: $colorForeground;
-    //color: mix($onSecondaryContainer, $secondaryContainer, 80%);
+    color: mix($onSecondaryContainer, $secondaryContainer, 80%);
 }
 
 .osd-music-pill {
@@ -99,8 +94,7 @@ $colorForeground: $primary;
     min-width: 1.833rem;
     padding: 0.273rem 0.682rem;
     background-color: $secondaryContainer;
-    //color: $onSecondaryContainer;
-    color: $colorForeground;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-controls {
@@ -110,8 +104,7 @@ $colorForeground: $primary;
     min-width: 1.833rem;
     padding: 0.205rem;
     background-color: $secondaryContainer;
-    //color: $onSecondaryContainer;
-    color: $colorForeground;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-controlbtn {
@@ -143,8 +136,7 @@ $colorForeground: $primary;
     min-width: 0.409rem; // width of progress
     min-height: 3.068rem;
     padding: 0.273rem;
-    color: $colorForeground;
-    //color: $onSecondaryContainer;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-playstate {
@@ -153,8 +145,7 @@ $colorForeground: $primary;
     min-width: 3.068rem;
     border-radius: 10rem;
     background-color: $secondaryContainer;
-    color: $colorForeground;
-    //color: $onSecondaryContainer;
+    color: $onSecondaryContainer;
 }
 
 .osd-music-playstate-btn>label {
