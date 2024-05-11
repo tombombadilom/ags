@@ -13,12 +13,20 @@ import {
     ModuleReloadIcon,
     ModuleSettingsIcon,
     ModulePowerIcon,
-    ModuleRawInput
+    ModuleRawInput,
+    ModuleCloudflareWarp
 } from "./quicktoggles.js";
 import ModuleNotificationList from "./centermodules/notificationlist.js";
+<<<<<<< HEAD
 import ModuleVolumeMixer from "./centermodules/volumemixer.js";
 import ModuleWifiNetworks from "./centermodules/wifinetworks.js";
 import ModuleBluetooth from "./centermodules/bluetooth.js";
+=======
+import ModuleAudioControls from "./centermodules/audiocontrols.js";
+import ModuleWifiNetworks from "./centermodules/wifinetworks.js";
+import ModuleBluetooth from "./centermodules/bluetooth.js";
+import ModuleConfigure from "./centermodules/configure.js";
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 import { ModuleCalendar } from "./calendar.js";
 import { getDistroIcon } from '../.miscutils/system.js';
 import { MaterialIcon } from '../.commonwidgets/materialicon.js';
@@ -32,9 +40,15 @@ const centerWidgets = [
         contentWidget: ModuleNotificationList(),
     },
     {
+<<<<<<< HEAD
         name: 'Volume mixer',
         materialIcon: 'volume_up',
         contentWidget: ModuleVolumeMixer(),
+=======
+        name: 'Audio controls',
+        materialIcon: 'volume_up',
+        contentWidget: ModuleAudioControls(),
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     },
     {
         name: 'Bluetooth',
@@ -47,6 +61,14 @@ const centerWidgets = [
         contentWidget: ModuleWifiNetworks(),
         onFocus: () => execAsync('nmcli dev wifi list').catch(print),
     },
+<<<<<<< HEAD
+=======
+    {
+        name: 'Live config',
+        materialIcon: 'tune',
+        contentWidget: ModuleConfigure(),
+    },
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 ];
 
 const timeRow = Box({
@@ -78,15 +100,20 @@ const timeRow = Box({
 
 const togglesBox = Widget.Box({
     hpack: 'center',
-    className: 'sidebar-togglesbox spacing-h-10',
+    className: 'sidebar-togglesbox spacing-h-5',
     children: [
         ToggleIconWifi(),
         ToggleIconBluetooth(),
         await ModuleRawInput(),
         await HyprToggleIcon('touchpad_mouse', 'No touchpad while typing', 'input:touchpad:disable_while_typing', {}),
+<<<<<<< HEAD
         ModuleNightLight(),
+=======
+        await ModuleNightLight(),
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
         await ModuleInvertColors(),
         ModuleIdleInhibitor(),
+        await ModuleCloudflareWarp(),
     ]
 })
 

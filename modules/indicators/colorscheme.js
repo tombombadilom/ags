@@ -40,6 +40,7 @@ const ColorSchemeSettingsRevealer = () => {
         child: ColorSchemeSettings(),
         setup: (self) => self.hook(isHoveredColorschemeSettings, (revealer) => {
             if (isHoveredColorschemeSettings.value == false) {
+<<<<<<< HEAD
               setTimeout(() => {
                   if (isHoveredColorschemeSettings.value == false)
                     revealer.revealChild = false;
@@ -164,6 +165,131 @@ const ColorschemeContent = () => Widget.Box({
                 ColorBox({ name: 'Sf', className: 'osd-color osd-color-surface' }),
                 ColorBox({ name: 'Sf-i', className: 'osd-color osd-color-inverseSurface' }),
                 ColorBox({ name: 'E', className: 'osd-color osd-color-error' }),
+=======
+                setTimeout(() => {
+                    if (isHoveredColorschemeSettings.value == false)
+                        revealer.revealChild = false;
+                    headerButtonIcon.label = 'expand_more';
+                }, 1500);
+            }
+        }),
+    });
+    return Widget.EventBox({
+        onHover: (self) => {
+            isHoveredColorschemeSettings.setValue(true);
+        },
+        onHoverLost: (self) => {
+            isHoveredColorschemeSettings.setValue(false);
+        },
+        child: Widget.Box({
+            vertical: true,
+            children: [
+                header,
+                content,
+            ]
+        }),
+    });
+}
+
+function calculateSchemeInitIndex(optionsArr, searchValue = 'vibrant') {
+    if (searchValue == '')
+        searchValue = 'vibrant';
+    const flatArray = optionsArr.flatMap(subArray => subArray);
+    const result = flatArray.findIndex(element => element.value === searchValue);
+    const rowIndex = Math.floor(result / optionsArr[0].length);
+    const columnIndex = result % optionsArr[0].length;
+    return [rowIndex, columnIndex];
+}
+
+const schemeOptionsArr = [
+    [
+        { name: 'Tonal Spot', value: 'tonalspot' },
+        { name: 'Fruit Salad', value: 'fruitsalad' },
+        { name: 'Fidelity', value: 'fidelity' },
+        { name: 'Rainbow', value: 'rainbow' },
+    ],
+    [
+        { name: 'Neutral', value: 'neutral' },
+        { name: 'Monochrome', value: 'monochrome' },
+        { name: 'Expressive', value: 'expressive' },
+        { name: 'Vibrant', value: 'vibrant' },
+    ],
+    //[
+    //  { name: 'Content', value: 'content' },
+    //]
+];
+
+const initColorMode = Utils.exec('bash -c "sed -n \'1p\' $HOME/.cache/ags/user/colormode.txt"');
+const initColorVal = (initColorMode == "dark") ? 1 : 0;
+const initTransparency = Utils.exec('bash -c "sed -n \'2p\' $HOME/.cache/ags/user/colormode.txt"');
+const initTransparencyVal = (initTransparency == "transparent") ? 1 : 0;
+const initScheme = Utils.exec('bash -c "sed -n \'3p\' $HOME/.cache/ags/user/colormode.txt"');
+const initSchemeIndex = calculateSchemeInitIndex(schemeOptionsArr, initScheme);
+
+const ColorSchemeSettings = () => Widget.Box({
+    className: 'osd-colorscheme-settings spacing-v-5',
+    vertical: true,
+    vpack: 'center',
+    children: [
+        Widget.Box({
+            vertical: true,
+            children: [
+                Widget.Label({
+                    xalign: 0,
+                    className: 'txt-norm titlefont txt',
+                    label: 'Options',
+                    hpack: 'center',
+                }),
+                //////////////////
+                ConfigToggle({
+                    icon: 'dark_mode',
+                    name: 'Dark Mode',
+                    desc: 'Ya should go to sleep!',
+                    initValue: initColorVal,
+                    onChange: (self, newValue) => {
+                        let lightdark = newValue == 0 ? "light" : "dark";
+                        execAsync([`bash`, `-c`, `mkdir -p ${GLib.get_user_cache_dir()}/ags/user && sed -i "1s/.*/${lightdark}/"  ${GLib.get_user_cache_dir()}/ags/user/colormode.txt`])
+                            .then(execAsync(['bash', '-c', `${App.configDir}/scripts/color_generation/switchcolor.sh`]))
+                            .catch(print);
+                    },
+                }),
+                ConfigToggle({
+                    icon: 'border_clear',
+                    name: 'Transparency',
+                    desc: 'Make shell elements transparent',
+                    initValue: initTransparencyVal,
+                    onChange: (self, newValue) => {
+                        let transparency = newValue == 0 ? "opaque" : "transparent";
+                        execAsync([`bash`, `-c`, `mkdir -p ${GLib.get_user_cache_dir()}/ags/user && sed -i "2s/.*/${transparency}/"  ${GLib.get_user_cache_dir()}/ags/user/colormode.txt`])
+                            .then(execAsync(['bash', '-c', `${App.configDir}/scripts/color_generation/switchcolor.sh`]))
+                            .catch(print);
+                    },
+                }),
+            ]
+        }),
+        Widget.Box({
+            vertical: true,
+            className: 'spacing-v-5',
+            children: [
+                Widget.Label({
+                    xalign: 0,
+                    className: 'txt-norm titlefont txt margin-top-5',
+                    label: 'Scheme styles',
+                    hpack: 'center',
+                }),
+                //////////////////
+                ConfigMulipleSelection({
+                    hpack: 'center',
+                    vpack: 'center',
+                    optionsArr: schemeOptionsArr,
+                    initIndex: initSchemeIndex,
+                    onChange: (value, name) => {
+                        execAsync([`bash`, `-c`, `mkdir -p ${GLib.get_user_cache_dir()}/ags/user && sed -i "3s/.*/${value}/" ${GLib.get_user_cache_dir()}/ags/user/colormode.txt`])
+                            .then(execAsync(['bash', '-c', `${App.configDir}/scripts/color_generation/switchcolor.sh`]))
+                            .catch(print);
+                    },
+                }),
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
             ]
         }),
         Widget.Box({
@@ -182,6 +308,48 @@ const ColorschemeContent = () => Widget.Box({
     ]
 });
 
+<<<<<<< HEAD
+=======
+const ColorschemeContent = () => Widget.Box({
+    className: 'osd-colorscheme spacing-v-5',
+    vertical: true,
+    hpack: 'center',
+    children: [
+        Widget.Label({
+            xalign: 0,
+            className: 'txt-norm titlefont txt',
+            label: 'Color scheme',
+            hpack: 'center',
+        }),
+        Widget.Box({
+            className: 'spacing-h-5',
+            hpack: 'center',
+            children: [
+                ColorBox({ name: 'P', className: 'osd-color osd-color-primary' }),
+                ColorBox({ name: 'S', className: 'osd-color osd-color-secondary' }),
+                ColorBox({ name: 'T', className: 'osd-color osd-color-tertiary' }),
+                ColorBox({ name: 'Sf', className: 'osd-color osd-color-surface' }),
+                ColorBox({ name: 'Sf-i', className: 'osd-color osd-color-inverseSurface' }),
+                ColorBox({ name: 'E', className: 'osd-color osd-color-error' }),
+            ]
+        }),
+        Widget.Box({
+            className: 'spacing-h-5',
+            hpack: 'center',
+            children: [
+                ColorBox({ name: 'P-c', className: 'osd-color osd-color-primaryContainer' }),
+                ColorBox({ name: 'S-c', className: 'osd-color osd-color-secondaryContainer' }),
+                ColorBox({ name: 'T-c', className: 'osd-color osd-color-tertiaryContainer' }),
+                ColorBox({ name: 'Sf-c', className: 'osd-color osd-color-surfaceContainer' }),
+                ColorBox({ name: 'Sf-v', className: 'osd-color osd-color-surfaceVariant' }),
+                ColorBox({ name: 'E-c', className: 'osd-color osd-color-errorContainer' }),
+            ]
+        }),
+        ColorSchemeSettingsRevealer(),
+    ]
+});
+
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 const isHoveredColorschemeSettings = Variable(false);
 
 export default () => Widget.Revealer({
@@ -189,6 +357,7 @@ export default () => Widget.Revealer({
     transitionDuration: userOptions.animations.durationLarge,
     child: ColorschemeContent(),
     setup: (self) => {
+<<<<<<< HEAD
       self
         .hook(showColorScheme, (revealer) => {
             if (showColorScheme.value == true)
@@ -204,5 +373,22 @@ export default () => Widget.Revealer({
               }, 2000);
             }
         })
+=======
+        self
+            .hook(showColorScheme, (revealer) => {
+                if (showColorScheme.value == true)
+                    revealer.revealChild = true;
+                else
+                    revealer.revealChild = isHoveredColorschemeSettings.value;
+            })
+            .hook(isHoveredColorschemeSettings, (revealer) => {
+                if (isHoveredColorschemeSettings.value == false) {
+                    setTimeout(() => {
+                        if (isHoveredColorschemeSettings.value == false)
+                            revealer.revealChild = showColorScheme.value;
+                    }, 2000);
+                }
+            })
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     },
 })

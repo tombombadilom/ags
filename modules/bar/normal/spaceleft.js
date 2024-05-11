@@ -39,16 +39,28 @@ const WindowTitle = async () => {
 }
 
 
+<<<<<<< HEAD
 export default async () => {
+=======
+export default async (monitor = 0) => {
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     const optionalWindowTitleInstance = await WindowTitle();
     return Widget.EventBox({
         onScrollUp: () => {
             Indicator.popup(1); // Since the brightness and speaker are both on the same window
+<<<<<<< HEAD
             Brightness.screen_value += 0.05;
         },
         onScrollDown: () => {
             Indicator.popup(1); // Since the brightness and speaker are both on the same window
             Brightness.screen_value -= 0.05;
+=======
+            Brightness[monitor].screen_value += 0.05;
+        },
+        onScrollDown: () => {
+            Indicator.popup(1); // Since the brightness and speaker are both on the same window
+            Brightness[monitor].screen_value -= 0.05;
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
         },
         onPrimaryClick: () => {
             App.toggleWindow('sideleft');
@@ -75,4 +87,8 @@ export default async () => {
             ]
         })
     });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)

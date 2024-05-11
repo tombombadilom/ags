@@ -71,6 +71,10 @@ export const keybindList = [[
         "name": "Utilities",
         "binds": [
             { "keys": ["PrtSc"], "action": "Screenshot  >>  clipboard" },
+<<<<<<< HEAD
+=======
+            { "keys": ["Ctrl", "PrtSc"], "action": "Screenshot  >>  file + clipboard" },
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
             { "keys": ["󰖳", "Shift", "+", "S"], "action": "Screen snip  >>  clipboard" },
             { "keys": ["󰖳", "Shift", "+", "T"], "action": "Image to text  >>  clipboard" },
             { "keys": ["󰖳", "Shift", "+", "C"], "action": "Color picker" },

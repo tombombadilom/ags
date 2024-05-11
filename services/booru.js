@@ -147,4 +147,3 @@ class BooruService extends Service {
 }
 
 export default new BooruService();
-

@@ -18,6 +18,7 @@
         "term15"  : "#EBDBB2"
     },
     "light": {
+<<<<<<< HEAD
         "term0"   : "#EFF1F5",
         "term1"   : "#ED5D6E",
         "term2"   : "#5BB348",
@@ -34,5 +35,23 @@
         "term13"  : "#F47FD4",
         "term14"  : "#31A1A9",
         "term15"  : "#BDC1CD"
+=======
+        "term0"   : "#FDF9F3",
+        "term1"   : "#FF6188",
+        "term2"   : "#A9DC76",
+        "term3"   : "#FC9867",
+        "term4"   : "#FFD866",
+        "term5"   : "#F47FD4",
+        "term6"   : "#78DCE8",
+        "term7"   : "#333034",
+        "term8"   : "#121212",
+        "term9"   : "#FF6188",
+        "term10"  : "#A9DC76",
+        "term11"  : "#FC9867",
+        "term12"  : "#FFD866",
+        "term13"  : "#F47FD4",
+        "term14"  : "#78DCE8",
+        "term15"  : "#333034"
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     }
 }

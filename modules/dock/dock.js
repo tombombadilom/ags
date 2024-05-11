@@ -1,5 +1,9 @@
 const { Gtk, GLib } = imports.gi;
+<<<<<<< HEAD
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../variables.js';
+=======
+import App from 'resource:///com/github/Aylur/ags/app.js';
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 const { EventBox, Button } = Widget;
@@ -11,6 +15,7 @@ const { Box, Revealer } = Widget;
 import { setupCursorHover } from '../.widgetutils/cursorhover.js';
 import { getAllFiles, searchIcons } from './icons.js'
 import { MaterialIcon } from '../.commonwidgets/materialicon.js';
+<<<<<<< HEAD
 
 const icon_files = userOptions.icons.searchPaths.map(e => getAllFiles(e)).flat(1)
 
@@ -23,24 +28,33 @@ function clearTimes() {
     timers.forEach(e => GLib.source_remove(e))
     timers = []
 }
+=======
+import { substitute } from '../.miscutils/icons.js';
 
-function substitute(str) {
-    const subs = [
-        { from: 'code-url-handler', to: 'visual-studio-code' },
-        { from: 'Code', to: 'visual-studio-code' },
-        { from: 'GitHub Desktop', to: 'github-desktop' },
-        { from: 'wps', to: 'wps-office2019-kprometheus' },
-        { from: 'gnome-tweaks', to: 'org.gnome.tweaks' },
-        { from: 'Minecraft* 1.20.1', to: 'minecraft' },
-        { from: '', to: 'image-missing' },
-    ];
+const icon_files = userOptions.icons.searchPaths.map(e => getAllFiles(e)).flat(1)
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 
-    for (const { from, to } of subs) {
-        if (from === str)
-            return to;
-    }
+let isPinned = false
+let cachePath = new Map()
 
-    return str;
+let timers = []
+
+function clearTimes() {
+    timers.forEach(e => GLib.source_remove(e))
+    timers = []
+}
+
+function ExclusiveWindow(client) {
+    const fn = [
+        (client) => !(client !== null && client !== undefined),
+        // Jetbrains
+        (client) => client.title.includes("win"),
+        // Vscode
+        (client) => client.title === '' && client.class === ''
+    ]
+
+    for (const item of fn) { if (item(client)) { return true } }
+    return false
 }
 
 function ExclusiveWindow(client) {
@@ -66,6 +80,7 @@ const DockSeparator = (props = {}) => Box({
 const PinButton = () => Widget.Button({
     className: 'dock-app-btn dock-app-btn-animate',
     tooltipText: 'Pin Dock',
+<<<<<<< HEAD
     child: Widget.Overlay({
         child: Widget.Box({
             homogeneous: true,
@@ -77,6 +92,12 @@ const PinButton = () => Widget.Button({
             vpack: 'end',
             hpack: 'center',
         })],
+=======
+    child: Widget.Box({
+        homogeneous: true,
+        className: 'dock-app-icon txt',
+        child: MaterialIcon('push_pin', 'hugeass')
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     }),
     onClicked: (self) => {
         isPinned = !isPinned
@@ -85,6 +106,23 @@ const PinButton = () => Widget.Button({
     setup: setupCursorHover,
 })
 
+<<<<<<< HEAD
+=======
+const LauncherButton = () => Widget.Button({
+    className: 'dock-app-btn dock-app-btn-animate',
+    tooltipText: 'Open launcher',
+    child: Widget.Box({
+        homogeneous: true,
+        className: 'dock-app-icon txt',
+        child: MaterialIcon('apps', 'hugerass')
+    }),
+    onClicked: (self) => {
+        App.toggleWindow('overview');
+    },
+    setup: setupCursorHover,
+})
+
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 const AppButton = ({ icon, ...rest }) => Widget.Revealer({
     attribute: {
         'workspace': 0
@@ -245,15 +283,21 @@ export default (monitor = 0) => {
     const dockContent = Box({
         className: 'dock-bg spacing-h-5',
         children: [
+            PinButton(),
             PinnedApps(),
             DockSeparator(),
             Taskbar(),
+<<<<<<< HEAD
             PinButton(),
+=======
+            LauncherButton(),
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
         ]
     })
     const dockRevealer = Revealer({
         attribute: {
             'updateShow': self => { // I only use mouse to resize. I don't care about keyboard resize if that's a thing
+<<<<<<< HEAD
                 // const dockSize = [
                 //     dockContent.get_allocated_width(),
                 //     dockContent.get_allocated_height()
@@ -298,6 +342,13 @@ export default (monitor = 0) => {
                 else
                     self.revealChild = true;
 
+=======
+                if (userOptions.dock.monitorExclusivity)
+                    self.revealChild = Hyprland.active.monitor.id === monitor;
+                else
+                    self.revealChild = true;
+
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
                 return self.revealChild
             }
         },

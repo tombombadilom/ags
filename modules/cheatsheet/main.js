@@ -86,7 +86,11 @@ export const sheetContent = ExpandingIconTabContainer({
 export default (id) => PopupWindow({
     name: `cheatsheet${id}`,
     layer: 'overlay',
+<<<<<<< HEAD
     keymode: 'exclusive',
+=======
+    keymode: 'on-demand',
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     visible: false,
     child: Widget.Box({
         vertical: true,

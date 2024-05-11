@@ -1,7 +1,11 @@
 const { Gdk } = imports.gi;
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import PopupWindow from '../.widgethacks/popupwindow.js';
+<<<<<<< HEAD
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../variables.js';
+=======
+import { monitors } from '../.miscutils/hyprlanddata.js';
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
 
 const WINDOWS_NEED_CLICK2CLOSE = [
     'sideleft', 'sideright', 'overview', 'cheatsheet'
@@ -43,8 +47,13 @@ export default (monitor = 0) => PopupWindow({
         child: Widget.Box({
             css: `
                 ${userOptions.appearance.layerSmoke ? 'background-color: rgba(0,0,0,' + String(userOptions.appearance.layerSmokeStrength) + ');' : ''}
+<<<<<<< HEAD
                 min-height: ${SCREEN_HEIGHT}px;
                 min-width: ${SCREEN_WIDTH}px;
+=======
+                min-height: ${monitors[monitor].height}px;
+                min-width: ${monitors[monitor].width}px;
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
             `
         }),
     })

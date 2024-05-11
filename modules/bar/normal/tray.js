@@ -5,11 +5,15 @@ const { Gravity } = imports.gi.Gdk;
 
 const SysTrayItem = (item) => Button({
     className: 'bar-systray-item',
+<<<<<<< HEAD
     child: Icon({
         hpack: 'center',
         icon: `${item.icon}`,
         setup: (self) => self.hook(item, (self) => self.icon = item.icon),
     }),
+=======
+    child: Icon({hpack: 'center'}).bind('icon', item, 'icon'),
+>>>>>>> 4a21040 (merged new hyprland and ags version with my code)
     setup: (self) => self
         .hook(item, (self) => self.tooltipMarkup = item['tooltip-markup'])
     ,
